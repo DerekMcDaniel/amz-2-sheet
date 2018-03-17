@@ -6,21 +6,38 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from time import sleep
 
+# This script pulls data from the Amazon Item Search api
+#  and populates a google sheets file
+
+# I used gspread to connect to the google sheets documentation can be found here
+# https://github.com/burnash/gspread
 
 scope = [
     'https://spreadsheets.google.com/feeds',
     'https://www.googleapis.com/auth/drive'
 ]
 
-# Sign up for google sheet api to get credentials 
+# Sign up for google sheet api to get credentials
+# https://developers.google.com/sheets/api/
 creds = r""
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name(creds, scope)
 
 gc = gspread.authorize(credentials)
 
+# You will need to create the file on your
+# Google sheets account prior to using the script
+
+# Once created share it to the email that was
+#  setup when registering for the sheets api
+# The email will look similar to this:
+# myprojectname@test5-194320.iam.gserviceaccount.com
+
+
+# Google sheets filename
 sh = gc.open('AMZ TEST')
 
+# Worksheet name
 worksheet = sh.sheet1
 
 # Your amazon keys
