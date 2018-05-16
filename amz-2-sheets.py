@@ -72,13 +72,13 @@ class AMZ:
                     for x in i.get('BrowseNodes', {}).get('BrowseNode'):
                         if not isinstance(x, str):
                             cell_list[4].value = [x.get('Ancestors', {}).get('BrowseNode', {}).get('Name'),
-                                                  i.get('ItemAttributes', {}).get('Binding')]
+                                                  i.get('ItemAttributes', {}).get('Binding')][0]
                 cell_list[5].value = i.get('DetailPageURL')  # url
                 cell_list[6].value = i.get('OfferSummary', {}).get('TotalNew')  # Number of new for sale
                 cell_list[7].value = i.get('OfferSummary', {}).get('LowestNewPrice', {}).get('FormattedPrice')
                 # lowest price
                 if i.get('ItemAttributes', {}).get('UPCList', {}).get('UPCListElement'):
-                    cell_list[8].value = i['ItemAttributes']['UPCList']['UPCListElement']  # UPCs associated
+                    cell_list[8].value = i['ItemAttributes']['UPCList']['UPCListElement'][0]  # UPC associated
                 else:
                     cell_list[8].value = None
                 if i.get('SalesRank'):
